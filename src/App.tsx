@@ -27,6 +27,7 @@ import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { PORTFOLIO_DATA } from './constants';
 import { askAI } from './services/geminiService';
+import profilePic from './assets/profile.png';
 
 // Utility for tailwind classes
 function cn(...inputs: ClassValue[]) {
@@ -137,7 +138,7 @@ export default function App() {
               <div className="relative w-80 h-80 md:w-[450px] md:h-[450px]">
                 <div className="absolute inset-0 rounded-full border-2 border-white/50 shadow-2xl overflow-hidden">
                   <img 
-                    src="/profile.png" 
+                    src={profilePic} 
                     alt={PORTFOLIO_DATA.name}
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
