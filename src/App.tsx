@@ -137,7 +137,7 @@ export default function App() {
               <div className="relative w-80 h-80 md:w-[450px] md:h-[450px]">
                 <div className="absolute inset-0 rounded-full border-2 border-white/50 shadow-2xl overflow-hidden">
                   <img 
-                    src="https://raw.githubusercontent.com/jarvis-21/my_portfolio_website/main/profile.png" 
+                    src="/profile.png" 
                     alt={PORTFOLIO_DATA.name}
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
