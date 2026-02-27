@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -25,15 +27,15 @@ import {
 import Markdown from 'react-markdown';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { PORTFOLIO_DATA } from './constants';
-import { askAI } from './services/geminiService';
+import Image from 'next/image';
+import { PORTFOLIO_DATA } from '@/lib/constants';
 
 // Utility for tailwind classes
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export default function App() {
+export default function Home() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [chatInput, setChatInput] = useState('');
   const [messages, setMessages] = useState<{ role: 'user' | 'ai', content: string }[]>([
@@ -55,9 +57,33 @@ export default function App() {
     setChatInput('');
     setIsTyping(true);
 
-    const aiResponse = await askAI(userMsg);
-    setMessages(prev => [...prev, { role: 'ai', content: aiResponse }]);
-    setIsTyping(false);
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userMsg }),
+      });
+      const data = await response.json();
+      setMessages(prev => [...prev, { role: 'ai', content: data.text || data.error }]);
+    } catch (error) {
+      setMessages(prev => [...prev, { role: 'ai', content: "Sorry, I'm having trouble connecting to the server." }]);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
+  const [profileImage, setProfileImage] = useState('/me.png');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -134,14 +160,33 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:col-span-5 flex justify-center lg:justify-end"
             >
-              <div className="relative w-80 h-80 md:w-[450px] md:h-[450px]">
+              <div className="relative w-80 h-80 md:w-[450px] md:h-[450px] group">
                 <div className="absolute inset-0 rounded-full border-2 border-white/50 shadow-2xl overflow-hidden">
-                  <img 
-                    src="/me.png" 
+                  <Image 
+                    src={profileImage} 
                     alt={PORTFOLIO_DATA.name}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    priority
                   />
                 </div>
+                
+                {/* Upload Overlay */}
+                <button 
+                  onClick={() => fileInputRef.current?.click()}
+                  className="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white gap-2"
+                >
+                  <Pipette className="w-8 h-8" />
+                  <span className="font-bold text-sm">Change Photo</span>
+                </button>
+                <input 
+                  type="file" 
+                  ref={fileInputRef}
+                  onChange={handleImageUpload}
+                  accept="image/*"
+                  className="hidden"
+                />
+
                 {/* Decorative elements */}
                 <div className="absolute -z-10 -top-10 -right-10 w-40 h-40 bg-blue-400/20 rounded-full blur-3xl animate-pulse" />
                 <div className="absolute -z-10 -bottom-10 -left-10 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl animate-pulse delay-700" />
@@ -247,10 +292,10 @@ export default function App() {
           <div className="p-12 md:p-24 rounded-[3rem] bg-zinc-900 text-white text-center relative overflow-hidden">
             <div className="relative z-10">
               <h2 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-8">
-                Let's build something <br /> extraordinary.
+                Let&apos;s build something <br /> extraordinary.
               </h2>
               <p className="text-xl text-zinc-400 mb-12 max-w-2xl mx-auto">
-                Ready to transform your data infrastructure? Let's connect and discuss how I can help your team scale.
+                Ready to transform your data infrastructure? Let&apos;s connect and discuss how I can help your team scale.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a href={`mailto:${PORTFOLIO_DATA.contact.email}`} className="px-10 py-5 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 hover:scale-105 transition-all shadow-xl shadow-blue-600/20">
