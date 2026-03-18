@@ -11,14 +11,13 @@ export const PORTFOLIO_DATA: PortfolioData = {
       period: "26/09/2022 - Present",
       location: "Chennai, India",
       description: [
-        "Architected a centralized data lake using AWS Lake Formation, implementing Tag-Based Access Control (TBAC) to manage data as a product.",
-        "Developed and deployed PySpark applications on Amazon EMR clusters to process large-scale batch datasets stored in S3.",
-        "Leveraged AWS Step Functions to automate end-to-end data processing workflows, orchestrating on-demand EMR jobs.",
-        "Implemented Amazon Redshift solutions, utilizing Redshift Spectrum for 'lake-house' querying and Materialized Views.",
-        "Utilized GitHub Copilot to accelerate the authoring of Python-based ETL scripts and complex SQL transformations.",
-        "Optimized high-latency queries from 10 minutes down to under 10 seconds through query plan analysis and join-condition indexing.",
-        "Engineered a custom CRON Job scheduler to refresh materialized views every 30 minutes, ensuring data accuracy.",
-        "Managed database deployments via GitHub and automated pipelines, troubleshooting Liquibase changeset errors."
+        "Cloud Infrastructure & Python Development: Designed and developed scalable Python-based solutions for data replication and transformation processes across AWS cloud infrastructure.",
+        "AWS Service Implementation: Implemented and maintained AWS services including Lambda, S3, DynamoDB, RDS (PostgreSQL/MySQL), Batch, EventBridge, and SQS to support end-to-end data workflows.",
+        "Pipeline Orchestration & Automation: Leveraged AWS Step Functions to automate end-to-end data processing workflows and utilized AWS EventBridge for efficient task orchestration and scheduling.",
+        "Real-time Data Integration: Integrated Qlik for near real-time data replication and collaborated with cross-functional teams to ensure data availability for dashboards and reporting tools.",
+        "Cloud Data Warehousing: Implemented Amazon Redshift solutions, utilizing Redshift Spectrum for lake-house querying and Redshift Materialized Views to accelerate complex analytical queries.",
+        "AI-Enhanced Velocity: Utilized GitHub Copilot to accelerate the authoring of Python-based ETL scripts and complex SQL transformations, increasing development velocity.",
+        "Agile Collaboration: Maintained code repositories using GitHub for version control and collaborated within Agile/Scrum environments to ensure seamless data delivery."
       ]
     }
   ],
