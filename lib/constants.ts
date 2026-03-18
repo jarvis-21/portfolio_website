@@ -27,13 +27,25 @@ export const PORTFOLIO_DATA: PortfolioData = {
       title: "AWS Certified Data Engineer - Associate",
       issuer: "Amazon Web Services",
       date: "2024",
-      link: "#"
+      link: "https://cp.certmetrics.com/amazon/en/public/verify/credential/bea8876c1b1945009eb2ca44a75ed440"
+    },
+    {
+      title: "AWS Certified AI Practitioner",
+      issuer: "Amazon Web Services",
+      date: "2026",
+      link: "https://cp.certmetrics.com/amazon/en/public/verify/credential/ba5af7ae2c5e49ef8833cf6d92517e09"
+    },
+    {
+      title: "Academy Accreditation - Databricks Fundamentals",
+      issuer: "Databricks",
+      date: "2026",
+      link: "https://credentials.databricks.com/dafed179-1fe9-4ee5-b6a0-1cc66000ab0a#acc.QHmKCes1"
     },
     {
       title: "GitHub Copilot",
       issuer: "GitHub",
       date: "2024",
-      link: "#"
+      link: "https://learn.microsoft.com/en-us/users/ROHITH-5712/credentials/EE7911BDEC7C6887"
     }
   ],
   skills: [
