@@ -43,14 +43,14 @@ export const PORTFOLIO_DATA: PortfolioData = {
     {
       title: "GitHub Copilot",
       issuer: "GitHub",
-      date: "2024",
+      date: "2026",
       link: "https://learn.microsoft.com/en-us/users/ROHITH-5712/credentials/EE7911BDEC7C6887"
     }
   ],
   skills: [
     {
       category: "Data Engineering",
-      items: ["AWS Lake Formation", "Amazon EMR", "PySpark", "AWS Step Functions", "Hive"]
+      items: ["AWS Lake Formation", "Amazon EMR", "PySpark", "AWS Step Functions", "Databricks"]
     },
     {
       category: "Cloud & AWS",
